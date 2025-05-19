@@ -14,15 +14,28 @@ import SwiftUI
 // Color.red.ignoresSafeArea()
 
 // Toggle("Toggle" , isOn: $isOn).border(Color.black , width: 2)
+
 struct ContentView: View {
     
     var body: some View {
-        HStack(alignment: .bottom , spacing: 10) {
-            Image("apple")
-                .border(Color.black)
-            Text("Apple")
-                .border(Color.black)
-        }.frame(width: 300 , height: 300 , alignment: .center).border(Color.red)
+        GeometryReader(content: {
+            geometry in
+            VStack {
+                HStack(spacing: 0){
+                    Image("apple")
+                        .frame(width:(geometry.size.width - 20 ) / 2)
+                        .border(Color.black)
+                    Text("Apple")
+                        .frame(width:(geometry.size.width - 20) / 2)
+                        .border(Color.black)
+                }
+                .padding(.horizontal, 20)
+                //.padding([.top,.leading] , 40)
+                Spacer()
+            }
+            .frame(width: geometry.size.width)
+            .border(Color.black)
+        })
     }
 }
 
